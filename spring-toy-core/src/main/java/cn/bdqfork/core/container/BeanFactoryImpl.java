@@ -97,7 +97,7 @@ public class BeanFactoryImpl implements BeanFactory {
     @Override
     public Object getBean(Class<?> clazz) throws BeansException {
         BeanDefinition beanDefinition = beanDefinitions.values().stream()
-                .filter(definition -> BeanUtils.isSubType(definition.getClazz(), clazz) || BeanUtils.isSubType(definition.getClazz(), clazz))
+                .filter(definition -> BeanUtils.isSubType(definition.getClazz(), clazz) || BeanUtils.isSubType(clazz, definition.getClazz()))
                 .findFirst()
                 .orElse(null);
         if (beanDefinition == null) {
